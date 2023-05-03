@@ -40,7 +40,7 @@ const BookTableText = ({textData, setSwitchPage}) => {
             <td className="border py-2">
               <div className="w-32 truncate text-center">{book.synopsis}</div>
             </td>
-            <td className="border py-2 bg-blue-500 text-white font-semibold py-1 px-3 rounded inline-block cursor-pointer" onClick={switchPage}>              
+            <td className="border py-2 bg-blue-500 text-white font-semibold px-3 rounded inline-block cursor-pointer" onClick={switchPage}>              
                 View
             </td>
           </tr>
