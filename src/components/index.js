@@ -11,6 +11,9 @@ import BookTable from "./BookTable";
 import BookTableJSON from "./BookTableJSON";
 import BookTableXML from "./BookTableXML";
 import BookTableText from "./BookTableText";
+import BookDetail from "./BookDetail";
+import Loading from "./Loading";
+import Notification from "./Notification";
 
 export{
     Sidebar,
@@ -25,5 +28,8 @@ export{
     BookTable,
     BookTableJSON,
     BookTableXML,
-    BookTableText
+    BookTableText,
+    BookDetail,
+    Loading,
+    Notification,
 }

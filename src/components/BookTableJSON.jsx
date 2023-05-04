@@ -1,9 +1,20 @@
+import { useCallback } from "react";
+import { handleViewButtonClick } from "./function";
 
-const BookTableJSON = ({books, setSwitchPage}) => { 
+const BookTableJSON = ({jsonData, onSelectBook, setSwitchPage}) => { 
 
-  const switchPage = () => {
-    setSwitchPage("view")
-  }
+  const handleView = useCallback((id) => {
+    handleViewButtonClick(id, onSelectBook);
+    setSwitchPage('view');
+  }, [onSelectBook, setSwitchPage]);
+
+  const books = jsonData;
+
+  
+  // const handleViewButtonClick = useCallback((id) => {
+  //   console.log("Book ID:", id);
+  // }, []);
+  
   return (
     <table className="table-auto">
       <thead>
@@ -38,7 +49,7 @@ const BookTableJSON = ({books, setSwitchPage}) => {
             <td className="border py-2">
               <div className="w-32 truncate text-center">{book.synopsis}</div>
             </td>
-            <td className="border py-2 bg-blue-500 text-white font-semibold px-3 rounded inline-block cursor-pointer" onClick={switchPage}>              
+            <td className="border py-2 bg-blue-500 text-white font-semibold px-3 rounded inline-block cursor-pointer" onClick={() => handleView(book.id)}>              
               View
             </td>
           </tr>

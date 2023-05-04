@@ -1,6 +1,11 @@
 import SearchBox from "./SearchBox"
 
 const Header = () => {
+  const handleAddBook = () => {
+    // Your logic for handling the add book action
+    console.log("Clicked")
+  };
+  
   return (
     <div
       style={{
@@ -22,21 +27,12 @@ const Header = () => {
       >
         <SearchBox />
         {/* Add any content or child components inside this div */}
-        <a
-          href="form"
-          className="bg-blue-500"
-          style={{
-            color: '#ffffff',
-            fontWeight: 600,
-            padding: '0.5rem 1rem',
-            borderRadius: '3px',
-            display: 'inline-block',
-            marginLeft: '1rem',
-            textDecoration: 'none',
-          }}
+        <button
+          onClick={handleAddBook}
+          className="bg-blue-500 text-white font-semibold py-2 px-4 ml-4 rounded"
         >
           Add Book
-        </a>
+        </button>
       </div>
     </div>
   )

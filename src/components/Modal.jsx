@@ -2,12 +2,14 @@
 const Modal = ({setShowModal}) => {
   const handleClick = (format) => {
     setShowModal(false);
-    localStorage.setItem("format", format.name);
+    localStorage.setItem("format", format.format);
   }
   const formats = [
-    {id: 1, name: "JSON", click: handleClick},
-    {id: 2, name: "XML", click: handleClick},
-    {id: 3, name: "Text", click: handleClick},
+    {id: 1, name: "JSON", format: "json", click: handleClick},
+    {id: 2, name: "XML", format: "json", click: handleClick},
+    {id: 3, name: "Text", format: "json", click: handleClick},
+    // {id: 2, name: "XML", click: handleClick},
+    // {id: 3, name: "Text", click: handleClick},
   ]
   return (
         <>

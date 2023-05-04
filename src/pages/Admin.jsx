@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Landing, Sidebar } from "../components"
 
 const Admin = () => {
   const [showModal, setShowModal] = useState(false);
   const [switchPage, setSwitchPage] = useState("landing")
+
+  useEffect(() => {
+    const format = localStorage.getItem('format');
+  
+    if (!format) {
+      localStorage.setItem('format', 'JSON');
+    }
+  }, []);
 
   return (
     <div className="flex">

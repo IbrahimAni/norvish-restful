@@ -1,3 +1,4 @@
+
 function parseTextData(textData) {
   const books = [];
   const bookStrings = textData.trim().split(/\n\n+/); // Split by multiple newline characters
@@ -19,7 +20,14 @@ function parseTextData(textData) {
   return books;
 }
 
+function handleViewButtonClick(id, onSelectBook) {
+  console.log("Book ID:", id);
+  onSelectBook(id)
+}
+
+
 
 export{
-  parseTextData
+  parseTextData,
+  handleViewButtonClick,
 }
