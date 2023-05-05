@@ -14,6 +14,9 @@ import BookTableText from "./BookTableText";
 import BookDetail from "./BookDetail";
 import Loading from "./Loading";
 import Notification from "./Notification";
+import Form from "./Form";
+import AddForm from "./AddForm";
+import UpdateForm from "./UpdateForm";
 
 export{
     Sidebar,
@@ -32,4 +35,7 @@ export{
     BookDetail,
     Loading,
     Notification,
+    Form,
+    AddForm,
+    UpdateForm,
 }

@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-import {BookTableJSON, BookTableXML, BookTableText, Loading} from "./index";
+import { useEffect } from "react";
+import {BookTableJSON, Loading} from "./index";
 import { fetchBooks } from "../../api";
-// import xmljs from 'xml-js';
 
-const BookTable = ({setPages, setSwitchPage, onSelectBook}) => {
+const BookTable = ({fetch, setFetch, data, setData, setPages, setSwitchPage, onSelectBook}) => {
   const format = localStorage.getItem('format');
 
-  const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchBookData = async () => {
@@ -18,8 +16,11 @@ const BookTable = ({setPages, setSwitchPage, onSelectBook}) => {
       }
     }
 
-    fetchBookData()
-  }, []);  
+    if (!data.books || fetch == true) {
+      fetchBookData();
+      setFetch(false)
+    }
+  }, [data, setData]); 
   
   useEffect(() => {
     console.log('Data state updated:', data.books);
@@ -32,7 +33,7 @@ const BookTable = ({setPages, setSwitchPage, onSelectBook}) => {
   if (!data.books) {
     return <Loading />;
   }
-
+console.log(format)
   switch (format) {
     case 'json':
       return(

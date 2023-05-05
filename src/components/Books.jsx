@@ -1,7 +1,8 @@
 import { useState } from "react";
 import {BookTable, Pagination, Notification} from "./index"
-const Books = ({setSwitchPage, onSelectBook, deleted, setDeleted}) => {
-const [pages, setPages] = useState([]);
+
+const Books = ({data, setData, setSwitchPage, onSelectBook, deleted, setDeleted, fetch, setFetch}) => {
+  const [pages, setPages] = useState([]);
   const dismissNotification = () => {
     // Reset the deleted state when the notification is dismissed
     setDeleted(false);
@@ -11,7 +12,7 @@ const [pages, setPages] = useState([]);
     {deleted && (
         <Notification
           message="Book deleted successfully."
-          duration={5000}
+          duration={3000}
           onDismiss={dismissNotification}
         />
       )}
@@ -19,7 +20,7 @@ const [pages, setPages] = useState([]);
       <h2 className="text-2xl font-bold">Books List</h2>
       <Pagination pages={pages} /> 
     </div>
-    <BookTable setPages={setPages} setSwitchPage={setSwitchPage} onSelectBook={onSelectBook} />
+    <BookTable fetch={fetch} setFetch={setFetch} data={data} setData={setData} setPages={setPages} setSwitchPage={setSwitchPage} onSelectBook={onSelectBook} />
     </>
   )
 }

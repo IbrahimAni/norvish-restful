@@ -1,9 +1,13 @@
 import SearchBox from "./SearchBox"
+// import { reset } from "./function";
 
-const Header = () => {
+const Header = ({setData, setSwitchPage, setSelectedBookId}) => {
   const handleAddBook = () => {
     // Your logic for handling the add book action
     console.log("Clicked")
+    setSelectedBookId(null)
+    setSwitchPage('add')
+    // reset()
   };
   
   return (
@@ -25,7 +29,7 @@ const Header = () => {
           width: '100%',
         }}
       >
-        <SearchBox />
+        <SearchBox setSwitchPage={setSwitchPage} setData={setData} />
         {/* Add any content or child components inside this div */}
         <button
           onClick={handleAddBook}

@@ -6,8 +6,8 @@ const Modal = ({setShowModal}) => {
   }
   const formats = [
     {id: 1, name: "JSON", format: "json", click: handleClick},
-    {id: 2, name: "XML", format: "json", click: handleClick},
-    {id: 3, name: "Text", format: "json", click: handleClick},
+    {id: 2, name: "XML", format: "xml", click: handleClick},
+    {id: 3, name: "Text", format: "text", click: handleClick},
     // {id: 2, name: "XML", click: handleClick},
     // {id: 3, name: "Text", click: handleClick},
   ]

@@ -1,7 +1,29 @@
+import {useState} from "react";
+import { searchBook } from "../../api";
 
-const SearchBox = () => {
+const SearchBox = ({setData, setSwitchPage}) => {
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const results = await searchBook(searchValue);
+      console.log("Search results:", results);
+      setData(results)
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+
+    setSearchValue("")
+    setSwitchPage("books")
+  };
+
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  };
   return (
-    <form action="search" method="GET" style={{ display: 'flex', flexGrow: 1 }}>
+    <form action="search" method="GET" style={{ display: 'flex', flexGrow: 1 }} onSubmit={handleSubmit}>
       <input
         type="search"
         style={{
@@ -22,6 +44,8 @@ const SearchBox = () => {
         aria-label="Search"
         name="search"
         id="search-input"
+        value={searchValue}
+        onChange={handleChange}
       />
       <button
         style={{
@@ -45,6 +69,7 @@ const SearchBox = () => {
         type="submit"
         className="bg-blue-500"
         id="search-button"
+        
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

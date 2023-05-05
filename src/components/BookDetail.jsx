@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { fetchBook, deleteBook  } from '../../api';
-import {Loading} from "./index.js"
+import {Loading, Notification} from "./index.js"
 
-const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
+const BookDetail = ({updated, setUpdated, setSelectedBookId, selectedBookId, setSwitchPage, setDeleted}) => {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
     const fetchBookDetails = async () => {
       try {
         setLoading(true);
-        const fetchedBook = await fetchBook(bookId);
+        const fetchedBook = await fetchBook(selectedBookId);
         setBook(fetchedBook);
         setLoading(false);        
       } catch (error) {
@@ -21,11 +21,13 @@ const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
     };
 
     fetchBookDetails();
-  }, [bookId]);
+  }, [selectedBookId]);
 
   const handleUpdate = (id) => {
     // Perform the update action here
     console.log('Update book with id:', id);
+    setSelectedBookId(id);
+    setSwitchPage("update")
   };
 
   const handleDelete = async (id) => {
@@ -42,6 +44,11 @@ const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
     }
   };
 
+  const dismissNotification = () => {
+    // Reset the deleted state when the notification is dismissed
+    setUpdated(false);
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -55,6 +62,8 @@ const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
   }
 
   return (
+    <>
+    {updated && <Notification message="Book Updated successfully." duration={3000} onDismiss={dismissNotification} />}
     <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full min-h-screen">
       <div className="book-details flex items-start justify-between">
         <div className="book-cover w-1/4">
@@ -67,7 +76,7 @@ const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
         <div className="book-info w-3/4 pl-8">
           <div className="buttons mb-2 ml-auto">
             {/* Replace the hrefs with the appropriate actions or navigation links */}
-            <button
+        <button
           className="bg-blue-500 text-white font-semibold py-2 px-4 mr-4 rounded"
           onClick={() => handleUpdate(book.id)}
         >
@@ -101,6 +110,7 @@ const BookDetail = ({bookId, setSwitchPage, setDeleted}) => {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

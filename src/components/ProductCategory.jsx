@@ -1,7 +1,8 @@
 
-const ProductCategory = ({setSwitchPage}) => {
+const ProductCategory = ({setSwitchPage, setFetch}) => {
   const getAllBooks = () => {
     setSwitchPage("books")
+    setFetch(true)
   }
   return (
     <div>
