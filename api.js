@@ -1,13 +1,13 @@
 import axios from "axios";
 
 // const baseUrl = import.meta.env.VITE_APP_BASEURL;
-const baseUrl = "http://localhost:8080/NorvishRestful/bookapi";
+const baseUrl = "https://norvish.appspot.com/bookapi";
 
 const getFormat = () => {
   return localStorage.getItem('format');
 };
 
-const format = getFormat().toLowerCase()
+const format = getFormat();
 
 export const fetchBooks = async () => {
   try {

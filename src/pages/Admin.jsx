@@ -9,7 +9,7 @@ const Admin = () => {
     const format = localStorage.getItem('format');
   
     if (!format) {
-      localStorage.setItem('format', 'JSON');
+      localStorage.setItem('format', 'json');
     }
   }, []);
 
